@@ -1,0 +1,21 @@
+<form (ngSubmit)="Convert()">
+    <div class="form-group">
+      <label for="currencyFrom">Your currency</label>
+      <input type="number" [(ngModel)]="startingAmount" name="currencyFromInput" id="currencyFromInput">
+      <select class="form-control" [(ngModel)]="startingCurrency" name="currencyFromSelector" id="currencyFromSelector">
+        <option></option>
+        <option *ngFor="let currency of currencies">{{currency}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="Your currency">Target currency</label>
+      <select class="form-control" [(ngModel)]="targetCurrency" name="currencyTo" id="currencyTo">
+        <option></option>
+        <option *ngFor="let currency of currencies">{{currency}}</option>
+      </select>
+    </div>
+    <button type="submit">Convert</button>
+  </form>
+  
+  <label for="convertedAmount">Converted Amount:</label>
+  <output id="convertedAmount">{{convertedAmount | number: '1.0-2'}}</output>

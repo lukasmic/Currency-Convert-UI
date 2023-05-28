@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  currencyRateUrl: 'https://localhost:44341'
+  currencyRateUrl: 'https://localhost:5001'
 };
 
 /*

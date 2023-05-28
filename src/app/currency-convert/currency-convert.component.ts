@@ -8,6 +8,8 @@ import { CurrencyRateService } from '../services/currency-rate.service';
 })
 export class CurrencyConvertComponent implements OnInit {
   public currencies: string[]; 
+  public availableHistoricalDates: string[];
+  public historicalDate: string;
   public startingAmount: number;
   public startingCurrency: string;
   public targetCurrency: string;
@@ -16,10 +18,15 @@ export class CurrencyConvertComponent implements OnInit {
   public constructor(private currencyRateService: CurrencyRateService){}
     ngOnInit(): void {
       this.currencyRateService.getCurencies().subscribe((result) => this.currencies = result)
+      this.currencyRateService.getHistoricalDates().subscribe((result) => this.availableHistoricalDates = result)
     }
 
   public Convert(){
-    this.currencyRateService.getConvertedCurrency(this.startingCurrency, this.targetCurrency, this.startingAmount).subscribe((result) => this.convertedAmount = result);
+    if (!this.historicalDate) {
+      this.currencyRateService.getConvertedCurrency(this.startingCurrency, this.targetCurrency, this.startingAmount).subscribe((result) => this.convertedAmount = result);
+    }
+    else {
+      this.currencyRateService.getHistoricalCurrency(this.startingCurrency, this.targetCurrency, this.startingAmount, this.historicalDate).subscribe((result) => this.convertedAmount = result);
+    }
   }
-
 }

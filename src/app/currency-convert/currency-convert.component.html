@@ -1,10 +1,14 @@
 <form (ngSubmit)="Convert()">
     <div class="form-group">
       <label for="currencyFrom">Your currency</label>
-      <input type="number" [(ngModel)]="startingAmount" name="currencyFromInput" id="currencyFromInput">
+      <input class="form-control" required type="number" [(ngModel)]="startingAmount" name="currencyFromInput" id="currencyFromInput">
       <select class="form-control" [(ngModel)]="startingCurrency" name="currencyFromSelector" id="currencyFromSelector">
         <option></option>
         <option *ngFor="let currency of currencies">{{currency}}</option>
+      </select>
+      <select class="form-control" [(ngModel)]="historicalDate" name="availableHistoricalDates" id="availableHistoricalDates">
+        <option></option>
+        <option *ngFor="let date of availableHistoricalDates">{{date}}</option>
       </select>
     </div>
     <div class="form-group">
